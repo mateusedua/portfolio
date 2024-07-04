@@ -1,8 +1,12 @@
 "use client"
 
+import { Card } from "./ui/card"
+
 const Header = () => {
     return (
-        <h1>Header</h1>
+        <Card>
+
+        </Card>
     )
 }
 
