@@ -1,11 +1,12 @@
 "use client"
 
-import Header from "../_components/Header"
-import { motion } from "framer-motion"
-import { Button } from "../_components/ui/button"
-import Link from "next/link"
+import Header from "../_components/Header";
+import { motion } from "framer-motion";
+import { Button } from "../_components/ui/button";
+import Link from "next/link";
 import { Github, Linkedin } from 'lucide-react';
-import { Badge } from "../_components/ui/badge"
+import { Badge } from "../_components/ui/badge";
+import BadgeCarousel from "./_components/BadgeCarousel";
 
 const Home = () => {
     return (
@@ -15,7 +16,7 @@ const Home = () => {
             <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col mt-72 justify-center items-center p-2"
+                className="flex flex-col mt-28 justify-center items-center p-2 h-screen"
             >
                 <div className="flex flex-col max-w-4xl gap-2">
                     <div className="flex items-center gap-1">
@@ -46,6 +47,7 @@ const Home = () => {
                     </div>
                 </div>
             </motion.div>
+            <BadgeCarousel />
         </>
     )
 }
