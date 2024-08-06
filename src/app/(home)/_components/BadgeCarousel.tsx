@@ -45,7 +45,7 @@ const BadgeCarousel = () => {
                             width: `${100 / slides.length}%`
                         }}>
                             <div className="flex flex-col items-center justify-center h-full text-6xl bg-primary p-4">
-                                <Badge className="rounded-none py-3 px-6 flex justify-center gap-3 text-lg">
+                                <Badge className="rounded-none flex justify-center gap-3 text-lg min-h-14 min-w-20">
                                     {slide.icon}
                                     {slide.title}
                                 </Badge>
