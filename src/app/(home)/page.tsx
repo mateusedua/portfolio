@@ -17,7 +17,7 @@ const Home = () => {
             <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col mt-28 justify-center items-center p-2 h-screen"
+                className="container max-w-6xl flex flex-col mt-28 justify-center items-center p-2 h-screen"
             >
                 <div className="flex flex-col max-w-4xl gap-2">
                     <div className="flex items-center gap-1">
