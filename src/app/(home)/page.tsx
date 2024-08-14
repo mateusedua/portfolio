@@ -6,12 +6,13 @@ import { Button } from "../_components/ui/button";
 import Link from "next/link";
 import { Github, Linkedin } from 'lucide-react';
 import { Badge } from "../_components/ui/badge";
-import BadgeCarousel from "./_components/BadgeCarousel";
 import ProjectCarousel from "./_components/ProjectCarousel";
+import Footer from "../_components/Footer";
+import { Separator } from "../_components/ui/separator";
 
 const Home = () => {
     return (
-        <>
+        <div>
             <title>Mateus Eduardo</title>
             <Header />
             <motion.div
@@ -48,10 +49,12 @@ const Home = () => {
                     </div>
                 </div>
             </motion.div>
-            <BadgeCarousel />
-            <div className="flex max-lg:flex-col gap-20 mt-32">
-                <div className="flex flex-col w-[50%] max-lg:w-[100%] p-4 items-end">
-                    <div className="flex flex-col max-w-2xl">
+            <div className="container max-w-7xl">
+                <Separator className="p-1 rounded-sm" />
+            </div>
+            <div className="container max-w-7xl flex max-lg:flex-col gap-20 mt-32">
+                <div className="flex flex-col w-1/2 max-lg:w-full items-end">
+                    <div className="flex flex-col">
                         <text className="text-lg">Olá, prazer 👋🏻</text>
                         <text className="text-2xl font-bold mb-10">Mateus Eduardo</text>
                         <text className="text-justify text-xl">
@@ -64,8 +67,8 @@ const Home = () => {
                         </text>
                     </div>
                 </div>
-                <div className="w-[50%] max-lg:w-[100%] flex flex-col p-4">
-                    <div className="max-w-2xl flex flex-col">
+                <div className="w-1/2 max-lg:w-full flex flex-col">
+                    <div className="flex flex-col">
                         <text className="font-bold text-2xl mb-10">Minhas habilidades</text>
                         <div className="flex gap-4 flex-wrap justify-between">
                             <Badge className="p-4 rounded-sm text-lg">
@@ -102,10 +105,12 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full flex justify-center mb-10">
+            <div className="container max-w-7xl mt-10">
+                <text className="font-bold text-2xl">Projetos</text>
                 <ProjectCarousel />
             </div>
-        </>
+            <Footer />
+        </div>
     )
 }
 
