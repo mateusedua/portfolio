@@ -15,11 +15,11 @@ const links = [
     },
     {
         link: 'Quem sou',
-        href: '/'
+        href: '#eu'
     },
     {
         link: 'Projetos',
-        href: '/'
+        href: '#projetos'
     }
 ]
 
@@ -63,11 +63,13 @@ const Header = () => {
                     <span className="font-bold text-lg">Mateus Eduardo</span>
                 </Link>
                 <div className="flex items-center gap-5">
-                    <ul className="flex max-sm:hidden gap-5 text-lg font-bold">
-                        <li>Inicio</li>
-                        <li>Quem sou</li>
-                        <li>Projetos</li>
-                    </ul>
+                    <div className="flex max-sm:hidden gap-5 text-lg font-bold">
+                        {
+                            links.map((item, index) => (
+                                <Link href={item.href} key={index}>{item.link}</Link>
+                            ))
+                        }
+                    </div>
                     <Theme />
                 </div>
             </div>

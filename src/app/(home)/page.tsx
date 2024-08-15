@@ -41,7 +41,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="mt-32">
-                    <Button className="text-lg font-bold p-7">PROJETOS</Button>
+                    <Button className="text-lg font-bold p-7" asChild>
+                        <Link href="#projetos">PROJETOS</Link>
+                    </Button>
                 </div>
                 <div className="mt-10">
                     <div className="rounded-full border-3 bg-secondary w-12 h-20 relative">
@@ -49,7 +51,7 @@ const Home = () => {
                     </div>
                 </div>
             </motion.div>
-            <div className="container max-w-7xl">
+            <div className="container max-w-7xl" id="eu">
                 <Separator className="p-1 rounded-sm" />
             </div>
             <div className="container max-w-7xl flex max-lg:flex-col gap-20 mt-32">
@@ -105,7 +107,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="container max-w-7xl mt-10">
+            <div className="container max-w-7xl mt-10" id="projetos">
                 <text className="font-bold text-2xl">Projetos</text>
                 <ProjectCarousel />
             </div>
