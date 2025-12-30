@@ -1,5 +1,5 @@
 // Cloudflare Pages Function - Email Handler
-// Uses MailChannels API (free for Cloudflare Workers)
+// Uses Resend API for sending emails
 
 interface ContactFormData {
   name: string;
@@ -8,7 +8,7 @@ interface ContactFormData {
 }
 
 interface Env {
-  // Add environment variables here if needed
+  RESEND_API_KEY: string;
 }
 
 // Pages Function handler
@@ -17,6 +17,21 @@ export async function onRequestPost(context: {
   env: Env;
 }): Promise<Response> {
   try {
+    // Check for API key
+    if (!context.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY not configured");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Configuração do servidor incompleta.",
+        }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
     const formData = await context.request.formData();
 
     const data: ContactFormData = {
@@ -54,60 +69,36 @@ export async function onRequestPost(context: {
       );
     }
 
-    // Send email using MailChannels (free with Cloudflare Workers)
-    // Docs: https://blog.cloudflare.com/sending-email-from-workers-with-mailchannels
-    const emailResponse = await fetch(
-      "https://api.mailchannels.net/tx/v1/send",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          personalizations: [
-            {
-              to: [
-                {
-                  email: "mateuseduardobene@gmail.com",
-                  name: "Mateus Eduardo",
-                },
-              ],
-            },
-          ],
-          from: {
-            email: "noreply@portfolio-1na.pages.dev",
-            name: "Portfolio Contact Form",
-          },
-          reply_to: {
-            email: data.email,
-            name: data.name,
-          },
-          subject: `[Portfolio] Nova mensagem de ${data.name}`,
-          content: [
-            {
-              type: "text/plain",
-              value: `Nome: ${data.name}\nEmail: ${data.email}\n\nMensagem:\n${data.message}`,
-            },
-            {
-              type: "text/html",
-              value: `
-              <h2>Nova mensagem do Portfolio</h2>
-              <p><strong>Nome:</strong> ${data.name}</p>
-              <p><strong>Email:</strong> <a href="mailto:${data.email}">${
-                data.email
-              }</a></p>
-              <hr>
-              <h3>Mensagem:</h3>
-              <p>${data.message.replace(/\n/g, "<br>")}</p>
-            `,
-            },
-          ],
-        }),
-      }
-    );
+    // Send email using Resend API
+    // Docs: https://resend.com/docs/api-reference/emails/send-email
+    const emailResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${context.env.RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "Portfolio <onboarding@resend.dev>", // Use your verified domain or onboarding@resend.dev for testing
+        to: ["mateuseduardobene@gmail.com"],
+        reply_to: data.email,
+        subject: `[Portfolio] Nova mensagem de ${data.name}`,
+        html: `
+          <h2>Nova mensagem do Portfolio</h2>
+          <p><strong>Nome:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${data.email}">${
+          data.email
+        }</a></p>
+          <hr>
+          <h3>Mensagem:</h3>
+          <p>${data.message.replace(/\n/g, "<br>")}</p>
+        `,
+        text: `Nome: ${data.name}\nEmail: ${data.email}\n\nMensagem:\n${data.message}`,
+      }),
+    });
+
+    const responseData = await emailResponse.json();
 
     if (emailResponse.ok) {
-      // Return success JSON
       return new Response(
         JSON.stringify({
           success: true,
@@ -119,8 +110,7 @@ export async function onRequestPost(context: {
         }
       );
     } else {
-      const errorText = await emailResponse.text();
-      console.error("MailChannels error:", errorText);
+      console.error("Resend error:", JSON.stringify(responseData));
 
       return new Response(
         JSON.stringify({
