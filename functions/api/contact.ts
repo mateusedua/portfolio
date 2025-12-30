@@ -78,7 +78,7 @@ export async function onRequestPost(context: {
         Authorization: `Bearer ${context.env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Portfolio <onboarding@resend.dev>", // Use your verified domain or onboarding@resend.dev for testing
+        from: "Portfolio <contato@mateuseduardo.com.br>",
         to: ["mateuseduardobene@gmail.com"],
         reply_to: data.email,
         subject: `[Portfolio] Nova mensagem de ${data.name}`,
