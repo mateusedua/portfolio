@@ -1,0 +1,88 @@
+---
+import { personalInfo, education } from '../data/content';
+---
+
+<section id="about" class="section relative">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Image / Avatar Area -->
+      <div class="relative group order-2 md:order-1">
+        <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+          <!-- Gradient border -->
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+          
+          <!-- Avatar container -->
+          <div class="relative w-full h-full rounded-3xl overflow-hidden glass p-1">
+            <div class="w-full h-full rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+              <!-- Placeholder Avatar - Replace with your photo -->
+              <div class="text-8xl md:text-9xl font-bold gradient-text">
+                {personalInfo.name.split(' ').map(n => n[0]).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badges -->
+          <div class="absolute -right-4 top-1/4 glass px-4 py-2 rounded-xl animate-float">
+            <span class="text-sm font-medium text-indigo-400">5+ anos</span>
+          </div>
+          <div class="absolute -left-4 bottom-1/4 glass px-4 py-2 rounded-xl animate-float" style="animation-delay: 1s;">
+            <span class="text-sm font-medium text-cyan-400">Full Stack</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="order-1 md:order-2">
+        <p class="text-indigo-400 font-medium mb-2">Sobre Mim</p>
+        <h2 class="section-title mb-6">
+          Construindo soluções que escalam
+        </h2>
+        
+        <div class="space-y-4 text-slate-300 leading-relaxed">
+          <p>
+            Sou um desenvolvedor apaixonado por criar aplicações robustas e escaláveis. 
+            Com mais de <strong class="text-white">5 anos de experiência</strong> no desenvolvimento 
+            de sistemas críticos, tenho um histórico comprovado de entregar soluções que impactam 
+            diretamente o negócio.
+          </p>
+          <p>
+            Minha especialidade está em <strong class="text-white">TypeScript</strong> e 
+            <strong class="text-white">Python</strong>, mas o que realmente me diferencia é 
+            minha visão de ponta a ponta — do código à infraestrutura, da API ao dashboard de 
+            monitoramento.
+          </p>
+        </div>
+
+        <!-- Education -->
+        <div class="mt-8 p-4 rounded-xl glass">
+          {education.map((edu) => (
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">{edu.icon}</div>
+              <div>
+                <h3 class="font-semibold text-white">{edu.degree}</h3>
+                <p class="text-slate-400">{edu.institution}</p>
+                <p class="text-sm text-indigo-400">{edu.period}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 mt-8">
+          <div class="text-center p-4 rounded-xl glass">
+            <div class="text-2xl md:text-3xl font-bold gradient-text">5+</div>
+            <div class="text-sm text-slate-400">Anos Exp.</div>
+          </div>
+          <div class="text-center p-4 rounded-xl glass">
+            <div class="text-2xl md:text-3xl font-bold gradient-text">30k+</div>
+            <div class="text-sm text-slate-400">Trans/Mês</div>
+          </div>
+          <div class="text-center p-4 rounded-xl glass">
+            <div class="text-2xl md:text-3xl font-bold gradient-text">100%</div>
+            <div class="text-sm text-slate-400">Docker</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
