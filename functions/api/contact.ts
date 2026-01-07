@@ -1,6 +1,3 @@
-// Cloudflare Pages Function - Email Handler
-// Uses Resend API for sending emails
-
 interface ContactFormData {
   name: string;
   email: string;
