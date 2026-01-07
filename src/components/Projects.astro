@@ -21,6 +21,16 @@ import { projects } from '../data/content';
     <div class="grid md:grid-cols-2 gap-8 mb-12">
       {projects.filter(p => p.featured).map((project) => (
         <div class="group relative rounded-2xl overflow-hidden glass hover:bg-slate-800/50 transition-all duration-500 card-hover">
+          <!-- In Development Badge -->
+          {project.inDevelopment && (
+            <div class="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-sm border border-amber-500/30">
+              <svg class="w-4 h-4 text-amber-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+              </svg>
+              <span class="text-xs font-medium text-amber-400">Em Desenvolvimento</span>
+            </div>
+          )}
+          
           <!-- Project Image Placeholder -->
           <div class="aspect-video bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-slate-900 relative overflow-hidden">
             <div class="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:20px_20px]"></div>

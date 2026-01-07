@@ -9,7 +9,7 @@ export const personalInfo = {
   linkedin: "https://linkedin.com/in/mateus-eduardo-83025a161",
   github: "https://github.com/mateusedua",
   bio: "Desenvolvedor Full Stack com 5+ anos de experiência construindo aplicações escaláveis e sistemas de alta performance. Especialista em TypeScript, Python e infraestrutura cloud.",
-  resumeUrl: "/resume.pdf", // Add your resume here
+  resumeUrl: "/pdf/mateus-fullstack.pdf",
 };
 
 export const skills = {
@@ -93,34 +93,15 @@ export const education = [
 
 export const projects = [
   {
-    title: "Sistema de Reservas",
+    title: "Sistema de Gestão Financeira",
     description:
-      "API REST de alta performance para gestão de reservas hoteleiras, processando milhares de transações diárias.",
-    tags: ["TypeScript", "Node.js", "Docker", "REST API"],
-    image: "/images/project-1.jpg",
+      "Aplicação completa para gestão de investimentos, controle de ações, dividendos e acompanhamento de carteira em tempo real.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    image: "/images/project-finance.jpg",
     github: "#",
     demo: "#",
     featured: true,
-  },
-  {
-    title: "Stack de Observabilidade",
-    description:
-      "Infraestrutura completa de monitoramento com Prometheus, Grafana e Loki para aplicações distribuídas.",
-    tags: ["Prometheus", "Grafana", "Loki", "Docker Compose"],
-    image: "/images/project-2.jpg",
-    github: "#",
-    demo: "#",
-    featured: true,
-  },
-  {
-    title: "Automação de Relatórios",
-    description:
-      "Sistema automatizado para geração de relatórios financeiros e operacionais com entrega via Slack e email.",
-    tags: ["Python", "Pandas", "Automação", "Slack API"],
-    image: "/images/project-3.jpg",
-    github: "#",
-    demo: "#",
-    featured: false,
+    inDevelopment: true,
   },
 ];
 
